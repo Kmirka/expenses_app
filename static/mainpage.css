@@ -1,0 +1,99 @@
+:root{
+      --card-bg: #f9f9f9;
+      --card-hover: #f1f1f1;
+      --accent: #4CAF50;
+      --text: #222;
+      --muted: #666;
+      --tag-text: #fff;
+      --gap: 12px;
+      --radius: 10px;
+    }
+
+    body{
+      margin: 18px;
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--text);
+      background: #fff;
+    }
+
+    h2{
+      font-weight: 600;
+      color: #333;
+      margin: 0 0 12px 0;
+      border-bottom: 2px solid var(--accent);
+      display: inline-block;
+      padding-bottom: 6px;
+      font-size: 1.15rem;
+    }
+
+    .expenses-list{
+      list-style: none;
+      padding: 0;
+      margin: 14px 0 0 0;
+      max-width: 920px;
+    }
+
+    .expenses-list li{
+      background: var(--card-bg);
+      margin-bottom: 10px;
+      padding: 12px 14px;
+      border-radius: var(--radius);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+      display: grid;
+      grid-template-columns: minmax(120px, 1fr) 140px 160px; /* дата | сума | категорія */
+      align-items: center;
+      gap: var(--gap);
+      transition: background 0.18s ease;
+      word-break: break-word;
+    }
+
+    @media (max-width: 640px){
+      .expenses-list li{
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      .amount { text-align: left; }
+      .category { justify-self: start; }
+    }
+
+    .expenses-list li:hover{
+      background: var(--card-hover);
+    }
+
+    .date {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .amount {
+      font-weight: 600;
+      color: var(--text);
+      text-align: right;
+      font-feature-settings: "tnum";
+      font-variant-numeric: tabular-nums;
+    }
+
+    .category {
+      justify-self: end;
+      padding: 6px 10px;
+      border-radius: 8px;
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--tag-text);
+      background-color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .expenses-list li.empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      color: #777;
+      font-style: italic;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .category[style]{
+      color: var(--tag-text);
+      box-shadow: 0 1px 0 rgba(0,0,0,0.06) inset;
+    }

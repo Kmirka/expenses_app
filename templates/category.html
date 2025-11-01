@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Витрати за категорією</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='category.css') }}">
+</head>
+
+<body>
+    <h1>📊 Витрати за категорією</h1>
+    <form method="post">
+        Категорія:
+        <label>Категорія:</label>
+        <select name="category" required>
+            <!-- <option value="" disabled selected>Оберіть категорію</option> -->
+            {% for cat in categories %}
+            <option value="{{ cat }}">{{ cat }}</option>
+            {% endfor %}
+        </select>
+
+
+        <button type="submit">Порахувати</button>
+    </form>
+    {% if total is not none %}
+    <p>Всього у категорії <b>{{ category }}</b>: {{ total if total else 0 }} грн</p>
+    {% endif %}
+    <a href="/">⬅ Назад</a>
+</body>
+
+</html>

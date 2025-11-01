@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>Реєстрація</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>👤 Реєстрація</h1>
+    <form method="post">
+        Логін: <input type="text" name="username" required><br>
+        Пароль: <input type="password" name="password" required><br>
+        <button type="submit">Зареєструватися</button>
+    </form>
+    <a href="{{ url_for('login') }}">Увійти</a>
+</body>
+</html>
