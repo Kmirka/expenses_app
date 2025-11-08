@@ -37,8 +37,16 @@ def index():
     if request.method == "POST":
         age = request.form.get("age")
         country = request.form.get("country")
+        print(session["user_id"])
+        response = (
+            supabase.table("users")
+            .update({"age": age})
+            .eq("id", session['user_id'])
+            .execute())
         message = f"Дякуємо! Вам {age} років, країна: {country}."
         render_template("index.html", message=message)
+
+
 
     user_id = session["user_id"]
     data = supabase.table("expenses").select("*").eq("user_id", user_id).order("date", desc=True).execute()
