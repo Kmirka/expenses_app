@@ -34,6 +34,10 @@ def index():
     if "user_id" not in session:
         return redirect(url_for("login"))
     message = None
+    hide = False
+    user_id = session["user_id"]
+    data = supabase.table("expenses").select("*").eq("user_id", user_id).order("date", desc=True).execute()
+    expenses = data.data
     if request.method == "POST":
         age = request.form.get("age")
         country = request.form.get("country")
@@ -44,14 +48,12 @@ def index():
             .eq("id", session['user_id'])
             .execute())
         message = f"Дякуємо! Вам {age} років, країна: {country}."
-        render_template("index.html", message=message)
+        hide = True
+        return render_template("index.html",expenses=expenses, message=message, statusMessage = hide)
+        
 
 
-
-    user_id = session["user_id"]
-    data = supabase.table("expenses").select("*").eq("user_id", user_id).order("date", desc=True).execute()
-    expenses = data.data
-    return render_template("index.html", expenses=expenses, username=session["username"])
+    return render_template("index.html", expenses=expenses, username=session["username"], statusMessage = hide)
 
 # --- API для графіка ---
 @app.route("/chart-data")

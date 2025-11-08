@@ -36,7 +36,7 @@
             <!-- Зменшений статичний графік -->
             <canvas id="expensesChart" width="450" height="auto"></canvas>
         </div>
-        
+
         <div class="analyze">
             <h2> Аналіз витрат</h2>
             <!-- Зменшений статичний графік -->
@@ -44,7 +44,7 @@
         </div>
 
     </div>
-
+    {% if not statusMessage %}
     <div class="form-container">
         <h1>Вкажіть ваші дані</h1>
         <form method="POST" action="/">
@@ -64,11 +64,13 @@
             <button type="submit">Надіслати</button>
         </form>
 
-        {% if message %}
-        <div class="message">{{ message }}</div>
-        {% endif %}
     </div>
+    {% endif %}
     
+    {% if message %}
+    <div class="message">{{ message }}</div>
+    {% endif %}
+
     <script src="/static/categories.js"></script>
     <script src="/static/graph.js"> </script>
 </body>
