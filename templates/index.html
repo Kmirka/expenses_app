@@ -44,6 +44,31 @@
         </div>
 
     </div>
+
+    <div class="form-container">
+        <h1>Вкажіть ваші дані</h1>
+        <form method="POST" action="/">
+            <label for="age">Ваш вік:</label>
+            <input type="number" id="age" name="age" min="1" max="120" required>
+
+            <label for="country">Ваша країна:</label>
+            <select id="country" name="country" required>
+                <option value="">Оберіть країну</option>
+                <option value="Україна">Україна</option>
+                <option value="Польща">Польща</option>
+                <option value="Німеччина">Німеччина</option>
+                <option value="США">США</option>
+                <option value="Інша">Інша</option>
+            </select>
+
+            <button type="submit">Надіслати</button>
+        </form>
+
+        {% if message %}
+        <div class="message">{{ message }}</div>
+        {% endif %}
+    </div>
+    
     <script src="/static/categories.js"></script>
     <script src="/static/graph.js"> </script>
 </body>
